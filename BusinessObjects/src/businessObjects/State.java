@@ -1,15 +1,15 @@
 package businessObjects;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class State {
 
     private int id;
     private String name;
-    private ArrayList Municipalities = new ArrayList();
+    private List municipalities;
 
-    public State() {
-
+    public State(String name, List<Integer> municipalities) {
+        this.name = name;
+        this.municipalities = municipalities;
     }
 
     public int getId() {
@@ -20,8 +20,8 @@ public class State {
         return name;
     }
 
-    public ArrayList getMunicipalities() {
-        return Municipalities;
+    public List getMunicipalities() {
+        return municipalities;
     }
 
     public void setId(int id) {
@@ -32,8 +32,8 @@ public class State {
         this.name = name;
     }
 
-    public void setMunicipalities(ArrayList Municipalities) {
-        this.Municipalities = Municipalities;
+    public void setMunicipalities(List<Integer> municipalities) {
+        this.municipalities = municipalities;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class State {
 
     @Override
     public String toString() {
-        return  "id=" + id + ", name=" + name + ", Municipalities=" + Municipalities;
+        return "id=" + id + ", name=" + name + ", Municipalities=" + municipalities;
     }
 
 }
