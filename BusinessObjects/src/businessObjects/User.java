@@ -1,9 +1,9 @@
-
 package businessObjects;
 
 import java.util.Date;
 
 public abstract class User {
+
     private int id;
     private String fullName;
     private String email;
@@ -14,13 +14,13 @@ public abstract class User {
     private char gender;
 
     public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
-       this.fullName = fullName;
-       this.email = email;
-       this.password = password;
-       this.avatar = avatar;
-       this.city = city;
-       this.birthDay = birthDay;
-       this.gender = gender;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.city = city;
+        this.birthDay = birthDay;
+        this.gender = gender;
     }
 
     public int getId() {
@@ -116,6 +116,5 @@ public abstract class User {
     public String toString() {
         return "id=" + id + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", avatar=" + avatar + ", city=" + city + ", birthDay=" + birthDay + ", gender=" + gender;
     }
-    
-    
+
 }
