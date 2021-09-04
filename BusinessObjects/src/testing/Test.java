@@ -2,6 +2,7 @@ package testing;
 
 import businessObjects.Administrator;
 import businessObjects.Anchored;
+import businessObjects.Comment;
 import businessObjects.Common;
 import businessObjects.Municipality;
 import businessObjects.Normal;
@@ -106,6 +107,14 @@ public class Test {
 //        
 //        System.out.println("This is the anchores base object: "+anchored);
 //        System.out.println("This is the common base object: "+common);
+//        -----COMMENT TEST-------
 
+        List<Integer> comments = new ArrayList<>();
+        comments.add(1);
+        comments.add(2);
+        comments.add(3);
+        comments.add(4);
+        Comment comment = new Comment(1, new Date(), "You are beautiful princes", comments );
+        System.out.println("This is the comment base object: "+comment);
     }
 }
