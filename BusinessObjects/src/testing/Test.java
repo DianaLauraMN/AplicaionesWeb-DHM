@@ -1,8 +1,11 @@
 package testing;
 
 import businessObjects.Administrator;
+import businessObjects.Anchored;
+import businessObjects.Common;
 import businessObjects.Municipality;
 import businessObjects.Normal;
+import businessObjects.Post;
 import businessObjects.State;
 import businessObjects.User;
 import java.util.ArrayList;
@@ -60,27 +63,49 @@ public class Test {
 //        municipality.setUsers(listUsers);
 //        System.out.println("Now these are the users updates of municipality: " + municipality.getUsers());
 //        -----USER TEST-------
+//
+//        User administrator = new Administrator(
+//                "Hector Zapata",
+//                "torrozapata@gmail.com",
+//                "!@#$%^&*()_menteabierta_1234567890;",
+//                "TorroSoft",
+//                "DianasPoda",
+//                new Date(),
+//                'M');
+//        User normal = new Normal(
+//                "Diana Medina",
+//                "dlm.10@gmail.com",
+//                "!@#$%^&*()_mentepetosa_1234567890;",
+//                "DianaSoft",
+//                "HectorPodas",
+//                new Date(),
+//                'F');
+//
+//        System.out.println("This is the administrator base object: "+administrator);
+//        System.out.println("This is the normal base object: "+normal);
+//        -----POST TEST-------
+//
+//        List<Integer> comments = new ArrayList<>();
+//        comments.add(1);
+//        comments.add(2);
+//        comments.add(3);
+//        comments.add(4);
+//        Post anchored = new Anchored(1,
+//                new Date(),
+//                "Administrator post",
+//                "Hello this is the new update about our beautiful sytem <3",
+//                new Date(),
+//                new ArrayList<>());
+//
+//        Post common = new Common(2,
+//                new Date(),
+//                "Common post",
+//                "You are beautiful",
+//                new Date(),
+//                comments);
+//        
+//        System.out.println("This is the anchores base object: "+anchored);
+//        System.out.println("This is the common base object: "+common);
 
-        User administrator = new Administrator(
-                "Hector Zapata",
-                "torrozapata@gmail.com",
-                "!@#$%^&*()_menteabierta_1234567890;",
-                "TorroSoft",
-                "DianasPoda",
-                new Date(),
-                'M');
-        User normal = new Normal(
-                "Diana Medina",
-                "dlm.10@gmail.com",
-                "!@#$%^&*()_mentepetosa_1234567890;",
-                "DianaSoft",
-                "HectorPodas",
-                new Date(),
-                'F');
-
-        System.out.println("This is the administrator base object: "+administrator);
-        System.out.println("This is the normal base object: "+normal);
-
-        
     }
 }
