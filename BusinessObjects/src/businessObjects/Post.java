@@ -9,6 +9,6 @@ package businessObjects;
  *
  * @author dlmn5
  */
-public class Post {
+public abstract class Post {
     
 }

@@ -9,6 +9,6 @@ package businessObjects;
  *
  * @author dlmn5
  */
-public class Common {
+public class Common extends Post{
     
 }
