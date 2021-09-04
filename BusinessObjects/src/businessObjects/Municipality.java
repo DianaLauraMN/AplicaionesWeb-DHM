@@ -1,14 +1,16 @@
 package businessObjects;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Municipality {
+
     private int id;
     private String name;
-    private ArrayList users = new ArrayList();
+    private List<Integer> users;
 
-    public Municipality() {
-   
+    public Municipality(String name, List<Integer> users) {
+        this.name = name;
+        this.users = users;
     }
 
     public int getId() {
@@ -19,8 +21,8 @@ public class Municipality {
         return name;
     }
 
-    public ArrayList getUsers() {
-        return users;
+    public List getUsers() {
+        return this.users;
     }
 
     public void setId(int id) {
@@ -31,7 +33,7 @@ public class Municipality {
         this.name = name;
     }
 
-    public void setUsers(ArrayList users) {
+    public void setUsers(List<Integer> users) {
         this.users = users;
     }
 
@@ -60,12 +62,9 @@ public class Municipality {
         return true;
     }
 
-    
-    
     @Override
     public String toString() {
         return "id=" + id + ", name=" + name + ", users=" + users;
     }
-    
-    
+
 }
