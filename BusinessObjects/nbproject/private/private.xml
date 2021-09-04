@@ -3,19 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/dlmn5/Desktop/Github%20-%20Web/DHM/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Administrator.java</file>
-            <file>file:/C:/Users/dlmn5/Desktop/Github%20-%20Web/DHM/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Post.java</file>
-            <file>file:/C:/Users/dlmn5/Desktop/Github%20-%20Web/DHM/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Common.java</file>
-            <file>file:/C:/Users/dlmn5/Desktop/Github%20-%20Web/DHM/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Anchored.java</file>
-=======
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/User.java</file>
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/Municipality.java</file>
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/State.java</file>
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/Comment.java</file>
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/Normal.java</file>
-            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/BusinessObjects/src/businessObjects/Administrator.java</file>
->>>>>>> 190273314754f224a259cb0ad0db5031bce881d8
+            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Anchored.java</file>
+            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Post.java</file>
+            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Comment.java</file>
+            <file>file:/C:/Users/Hector%20Zapata/OneDrive/Escritorio/Todo/Escuela/5to%20Semestre/Aplicaiones%20Web/FinalProject/AplicaionesWeb-DHM/BusinessObjects/src/businessObjects/Normal.java</file>
         </group>
     </open-files>
 </project-private>
