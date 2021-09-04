@@ -13,8 +13,14 @@ public abstract class User {
     private Date birthDay;
     private char gender;
 
-    public User() {
-    
+    public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
+       this.fullName = fullName;
+       this.email = email;
+       this.password = password;
+       this.avatar = avatar;
+       this.city = city;
+       this.birthDay = birthDay;
+       this.gender = gender;
     }
 
     public int getId() {
