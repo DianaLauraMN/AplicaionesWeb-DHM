@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businessObjects;
 
-/**
- *
- * @author dlmn5
- */
-public class Administrator extends User{
+import java.util.Date;
+
+public class Administrator extends User {
+
+    public Administrator(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
+    super(fullName, email, password, avatar, city, birthDay, gender);
     
+    }   
 }
