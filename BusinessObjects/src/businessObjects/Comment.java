@@ -1,40 +1,42 @@
-
 package businessObjects;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Hector Zapata
  */
 public class Comment {
-    private int id;
-    private int userId;
+
+    private ObjectId id;
+    private ObjectId userId;
     private Date dateTime;
     private String content;
-    private List<Integer> comments;
+    private List<ObjectId> comments;
 
-    public Comment(int userId, Date dateTime, String content, List<Integer> comments) {
+    public Comment(ObjectId userId, Date dateTime, String content, List<ObjectId> comments) {
         this.userId = userId;
         this.dateTime = dateTime;
         this.content = content;
         this.comments = comments;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public ObjectId getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(ObjectId userId) {
         this.userId = userId;
     }
 
@@ -54,18 +56,18 @@ public class Comment {
         this.content = content;
     }
 
-    public List<Integer> getComments() {
+    public List<ObjectId> getComments() {
         return comments;
     }
 
-    public void setComments(List<Integer> comments) {
+    public void setComments(List<ObjectId> comments) {
         this.comments = comments;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + this.id;
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -81,7 +83,7 @@ public class Comment {
             return false;
         }
         final Comment other = (Comment) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -89,9 +91,7 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "id=" + id + ", userId=" + userId + ", dateTime=" + dateTime + ", content=" + content + ", comments=" + comments;
+        return "Comment{" + "id=" + id + ", userId=" + userId + ", dateTime=" + dateTime + ", content=" + content + ", comments=" + comments + '}';
     }
-    
-    
-    
+
 }

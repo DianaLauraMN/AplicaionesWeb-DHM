@@ -1,19 +1,21 @@
 package businessObjects;
 
 import java.util.List;
+import java.util.Objects;
+import org.bson.types.ObjectId;
 
 public class Municipality {
 
-    private int id;
+    private ObjectId id;
     private String name;
-    private List<Integer> users;
+    private List<ObjectId> users;
 
-    public Municipality(String name, List<Integer> users) {
+    public Municipality(String name, List<ObjectId> users) {
         this.name = name;
         this.users = users;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -21,11 +23,11 @@ public class Municipality {
         return name;
     }
 
-    public List getUsers() {
+    public List<ObjectId> getUsers() {
         return this.users;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -33,14 +35,14 @@ public class Municipality {
         this.name = name;
     }
 
-    public void setUsers(List<Integer> users) {
+    public void setUsers(List<ObjectId> users) {
         this.users = users;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.id;
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -56,7 +58,7 @@ public class Municipality {
             return false;
         }
         final Municipality other = (Municipality) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -64,7 +66,7 @@ public class Municipality {
 
     @Override
     public String toString() {
-        return "id=" + id + ", name=" + name + ", users=" + users;
+        return "Municipality{" + "id=" + id + ", name=" + name + ", users=" + users + '}';
     }
 
 }
