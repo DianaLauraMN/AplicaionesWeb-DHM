@@ -19,6 +19,14 @@ public abstract class Post {
     private Date dateTimeEdition;
     private List<ObjectId> comments;
 
+    
+    public Post(){
+        
+    }
+    public Post(ObjectId id){
+        this.id = id;
+    }
+    
     public Post(ObjectId idUser, Date dateTimeCreation, String title, String content, Date dateTimeEdition, List<ObjectId> comments) {
         this.idUser = idUser;
         this.dateTimeCreation = dateTimeCreation;

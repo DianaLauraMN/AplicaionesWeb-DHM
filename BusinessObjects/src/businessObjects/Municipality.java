@@ -2,14 +2,22 @@ package businessObjects;
 
 import java.util.List;
 import java.util.Objects;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.types.ObjectId;
 
+@BsonDiscriminator
 public class Municipality {
 
     private ObjectId id;
     private String name;
     private List<ObjectId> users;
 
+    public Municipality(){
+        
+    }
+    public Municipality(ObjectId id){
+        this.id = id;
+    }
     public Municipality(String name, List<ObjectId> users) {
         this.name = name;
         this.users = users;

@@ -15,6 +15,14 @@ public abstract class User {
     private Date birthDay;
     private char gender;
 
+    public User() {
+
+    }
+
+    public User(ObjectId id) {
+        this.id = id;
+    }
+
     public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
         this.fullName = fullName;
         this.email = email;

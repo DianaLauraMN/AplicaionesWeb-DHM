@@ -3,12 +3,14 @@ package businessObjects;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author Hector Zapata
  */
+@BsonDiscriminator
 public class Comment {
 
     private ObjectId id;
@@ -17,6 +19,13 @@ public class Comment {
     private String content;
     private List<ObjectId> comments;
 
+    public Comment(){
+        
+    }
+    public Comment(ObjectId id){
+        this.id = id;
+    }
+    
     public Comment(ObjectId userId, Date dateTime, String content, List<ObjectId> comments) {
         this.userId = userId;
         this.dateTime = dateTime;
