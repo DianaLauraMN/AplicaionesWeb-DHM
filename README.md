@@ -7,6 +7,6 @@ which works in mongoStandar**
 
 ## Database characteristics
 
-1. The database should be with the title "Web Applications-DHM".
-2. The database must have 5 collections "Comments", "Municipalities", "Publications", "States", "Users".
+1. The database should be with the title "AplicacionesWeb-DHM".
+2. The database must have 5 collections "Comments", "Municipalities", "Posts", "States", "Users".
 3. Don't change the string connection, leave "localhost" as default.
