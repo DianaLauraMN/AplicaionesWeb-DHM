@@ -1,22 +1,22 @@
 package daos;
 
-
 import businessObjects.State;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
+import static daos.DAO.instance;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.bson.Document;
 
-
 public class StateDAO implements DAO<State> {
+
     MongoCollection<State> collection = instance.getConnection().getCollection("States", State.class);
-    
 
     @Override
     public boolean insert(State item) {
-        try{
-           
+        try {
             collection.insertOne(item);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -26,24 +26,39 @@ public class StateDAO implements DAO<State> {
 
     @Override
     public boolean delete(ObjectId idItem) {
-        try{
-           
+        try {
             collection.deleteOne(eq("_id", idItem));
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-    }
+        }
         return true;
     }
 
     @Override
     public boolean deleteItem(ObjectId idItem, ObjectId idDelete) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        State states = null;
+        try {
+            int x = -1;
+            states = collection.find(eq("_id", idItem)).first();
+            List<ObjectId> idUsers = states.getMunicipalities();
+            for (int i = 0; i < idUsers.size(); i++) {
+                if (idDelete.equals(idUsers.get(i))) {
+                    x = i;
+                    break;
+                }
+            }
+            idUsers.remove(x);
+            states.setMunicipalities(idUsers);
+            update(states);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return true;
     }
 
     @Override
     public boolean update(State item) {
         try {
-          
             collection.updateOne(eq("_id", item.getId()), new Document("$set",
                     new Document().append("name", item.getName()).append("municipalities", item.getMunicipalities())));
         } catch (Exception ex) {
@@ -56,9 +71,7 @@ public class StateDAO implements DAO<State> {
     public State find(ObjectId id) {
         State state = null;
         try {
-            
             state = collection.find(eq("_id", id)).first();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -67,17 +80,39 @@ public class StateDAO implements DAO<State> {
 
     @Override
     public List<State> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<State> states = new ArrayList<>();
+        try {
+            collection.find().into(states);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return states;
     }
 
     @Override
     public List<State> findLike(String pattern) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<State> states = new ArrayList<>();
+        try {
+            if (pattern.equalsIgnoreCase("")) {
+                return findAll();
+            } else {
+                collection.find(regex("name", pattern, "i")).into(states);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return states;
     }
 
     @Override
     public List<State> findMany(int many) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<State> states = new ArrayList<>();
+        try {
+            collection.find().limit(many).into(states);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return states;
     }
 
 }
