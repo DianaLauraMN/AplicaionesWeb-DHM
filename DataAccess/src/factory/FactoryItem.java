@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package factory;
 
 import businessObjects.Administrator;
@@ -15,10 +11,7 @@ import businessObjects.Post;
 import businessObjects.State;
 import businessObjects.User;
 
-/**
- *
- * @author Hector Zapata
- */
+
 public class FactoryItem {
 
     public User createUserAdmin() {

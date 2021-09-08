@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package daos;
 
+import daos.DAO;
 import businessObjects.User;
 import java.util.List;
 import org.bson.types.ObjectId;
 
-/**
- *
- * @author Hector Zapata
- */
 public class UserDAO implements DAO<User> {
 
     @Override

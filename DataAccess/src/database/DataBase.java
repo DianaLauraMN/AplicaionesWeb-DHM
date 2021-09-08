@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package database;
 
 import com.mongodb.ConnectionString;
@@ -14,10 +10,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
-/**
- *
- * @author Hector Zapata
- */
+
 public enum DataBase {
     INSTACE;
     String SERVER = "mongodb://localhost";
