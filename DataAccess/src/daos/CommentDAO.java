@@ -1,23 +1,23 @@
+
 package daos;
 
-import businessObjects.Municipality;
+import businessObjects.Comment;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-public class MunicipalityDAO implements DAO<Municipality> {
+public class CommentDAO implements DAO<Comment> {
 
-    MongoCollection<Municipality> collection = instance.getConnection().getCollection("Municipalities", Municipality.class);
+    MongoCollection<Comment> collection = instance.getConnection().getCollection("Comments", Comment.class);
 
     @Override
-    public boolean insert(Municipality item) {
+    public boolean insert(Comment item) {
         try {
-
             collection.insertOne(item);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return true;
     }
@@ -25,10 +25,8 @@ public class MunicipalityDAO implements DAO<Municipality> {
     @Override
     public boolean delete(ObjectId idItem) {
         try {
-
             collection.deleteOne(eq("_id", idItem));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
         }
         return true;
     }
@@ -39,42 +37,39 @@ public class MunicipalityDAO implements DAO<Municipality> {
     }
 
     @Override
-    public boolean update(Municipality item) {
+    public boolean update(Comment item) {
         try {
-
             collection.updateOne(eq("_id", item.getId()), new Document("$set",
-                    new Document().append("name", item.getName()).append("users", item.getUsers())));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+                    new Document().append("dateTime", item.getDateTime()).append("content",
+                            item.getContent()).append("comments", item.getComments())));
+        } catch (Exception e) {
         }
         return true;
     }
 
     @Override
-    public Municipality find(ObjectId id) {
-        Municipality municipality = null;
+    public Comment find(ObjectId id) {
         try {
-
-            municipality = collection.find(eq("_id", id)).first();
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            return collection.find(eq("_id", id)).first();
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        return municipality;
+        return new Comment();
     }
 
     @Override
-    public List<Municipality> findAll() {
+    public List<Comment> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Municipality> findLike(String pattern) {
+    public List<Comment> findLike(String pattern) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Municipality> findMany(int many) {
+    public List<Comment> findMany(int many) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

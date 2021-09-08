@@ -1,6 +1,5 @@
 package daos;
 
-
 import businessObjects.State;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
@@ -8,15 +7,14 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.bson.Document;
 
-
 public class StateDAO implements DAO<State> {
+
     MongoCollection<State> collection = instance.getConnection().getCollection("States", State.class);
-    
 
     @Override
     public boolean insert(State item) {
-        try{
-           
+        try {
+
             collection.insertOne(item);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -26,12 +24,12 @@ public class StateDAO implements DAO<State> {
 
     @Override
     public boolean delete(ObjectId idItem) {
-        try{
-           
+        try {
+
             collection.deleteOne(eq("_id", idItem));
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-    }
+        }
         return true;
     }
 
@@ -43,7 +41,7 @@ public class StateDAO implements DAO<State> {
     @Override
     public boolean update(State item) {
         try {
-          
+
             collection.updateOne(eq("_id", item.getId()), new Document("$set",
                     new Document().append("name", item.getName()).append("municipalities", item.getMunicipalities())));
         } catch (Exception ex) {
@@ -56,7 +54,7 @@ public class StateDAO implements DAO<State> {
     public State find(ObjectId id) {
         State state = null;
         try {
-            
+
             state = collection.find(eq("_id", id)).first();
 
         } catch (Exception ex) {

@@ -14,6 +14,7 @@ public abstract class User {
     private String city;
     private Date birthDay;
     private char gender;
+    private String phoneNumber;
 
     public User() {
 
@@ -23,7 +24,7 @@ public abstract class User {
         this.id = id;
     }
 
-    public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
+    public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender, String phoneNumber) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
@@ -31,6 +32,7 @@ public abstract class User {
         this.city = city;
         this.birthDay = birthDay;
         this.gender = gender;
+        this.phoneNumber = phoneNumber;
     }
 
     public ObjectId getId() {
@@ -95,6 +97,14 @@ public abstract class User {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

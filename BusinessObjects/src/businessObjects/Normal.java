@@ -15,8 +15,8 @@ public class Normal extends User {
         super(id);
     }
 
-    public Normal(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
-        super(fullName, email, password, avatar, city, birthDay, gender);
+    public Normal(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender,String phoneNumber) {
+        super(fullName, email, password, avatar, city, birthDay, gender,phoneNumber);
     }
 
   
