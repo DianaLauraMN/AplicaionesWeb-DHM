@@ -14,7 +14,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  * @author Hector Zapata
  */
 public enum DataBase {
-    INSTACE;
+       INSTACE;
     String SERVER = "mongodb://localhost";
     String DATABASE = "AplicacionesWeb-DHM";
 
@@ -29,5 +29,4 @@ public enum DataBase {
     public MongoDatabase getConnection() {
         return this.dataBase;
     }
-
 }
