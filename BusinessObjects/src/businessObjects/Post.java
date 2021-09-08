@@ -1,24 +1,33 @@
-
 package businessObjects;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author DianaMedina
  */
 public abstract class Post {
-    private int id;
-    private int idUser;
+
+    private ObjectId id;
+    private ObjectId idUser;
     private Date dateTimeCreation;
     private String title;
     private String content;
     private Date dateTimeEdition;
-    private List<Integer> comments;
+    private List<ObjectId> comments;
 
     
-    public Post(int idUser, Date dateTimeCreation, String title, String content, Date dateTimeEdition, List<Integer> comments) {
+    public Post(){
+        
+    }
+    public Post(ObjectId id){
+        this.id = id;
+    }
+    
+    public Post(ObjectId idUser, Date dateTimeCreation, String title, String content, Date dateTimeEdition, List<ObjectId> comments) {
         this.idUser = idUser;
         this.dateTimeCreation = dateTimeCreation;
         this.title = title;
@@ -26,22 +35,20 @@ public abstract class Post {
         this.dateTimeEdition = dateTimeEdition;
         this.comments = comments;
     }
-    
-    
-    
-    public int getId() {
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public int getIdUser() {
+    public ObjectId getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(ObjectId idUser) {
         this.idUser = idUser;
     }
 
@@ -77,18 +84,18 @@ public abstract class Post {
         this.dateTimeEdition = dateTimeEdition;
     }
 
-    public List<Integer> getComments() {
+    public List<ObjectId> getComments() {
         return comments;
     }
 
-    public void setComments(List<Integer> comments) {
+    public void setComments(List<ObjectId> comments) {
         this.comments = comments;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.id;
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -104,7 +111,7 @@ public abstract class Post {
             return false;
         }
         final Post other = (Post) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -112,8 +119,7 @@ public abstract class Post {
 
     @Override
     public String toString() {
-        return "id=" + id + ", idUser=" + idUser + ", dateTimeCreation=" + dateTimeCreation + ", title=" + title + ", content=" + content + ", dateTimeEdition=" + dateTimeEdition + ", comments=" + comments;
+        return "Post{" + "id=" + id + ", idUser=" + idUser + ", dateTimeCreation=" + dateTimeCreation + ", title=" + title + ", content=" + content + ", dateTimeEdition=" + dateTimeEdition + ", comments=" + comments + '}';
     }
-    
-    
+
 }

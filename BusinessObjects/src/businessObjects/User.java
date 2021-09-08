@@ -1,10 +1,12 @@
 package businessObjects;
 
 import java.util.Date;
+import java.util.Objects;
+import org.bson.types.ObjectId;
 
 public abstract class User {
 
-    private int id;
+    private ObjectId id;
     private String fullName;
     private String email;
     private String password;
@@ -12,6 +14,14 @@ public abstract class User {
     private String city;
     private Date birthDay;
     private char gender;
+
+    public User() {
+
+    }
+
+    public User(ObjectId id) {
+        this.id = id;
+    }
 
     public User(String fullName, String email, String password, String avatar, String city, Date birthDay, char gender) {
         this.fullName = fullName;
@@ -23,7 +33,7 @@ public abstract class User {
         this.gender = gender;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -55,7 +65,7 @@ public abstract class User {
         return gender;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -90,7 +100,7 @@ public abstract class User {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -106,7 +116,7 @@ public abstract class User {
             return false;
         }
         final User other = (User) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -114,7 +124,7 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "id=" + id + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", avatar=" + avatar + ", city=" + city + ", birthDay=" + birthDay + ", gender=" + gender;
+        return "User{" + "id=" + id + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", avatar=" + avatar + ", city=" + city + ", birthDay=" + birthDay + ", gender=" + gender + '}';
     }
 
 }

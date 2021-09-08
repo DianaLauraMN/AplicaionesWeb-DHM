@@ -1,18 +1,30 @@
 package businessObjects;
-import java.util.List;
 
+import java.util.List;
+import java.util.Objects;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.types.ObjectId;
+
+@BsonDiscriminator
 public class State {
 
-    private int id;
+    private ObjectId id;
     private String name;
-    private List municipalities;
+    private List<ObjectId> municipalities;
 
-    public State(String name, List<Integer> municipalities) {
+    public State(){
+        
+    }
+    public State(ObjectId id){
+        this.id = id;
+    }
+    
+    public State(String name, List<ObjectId> municipalities) {
         this.name = name;
         this.municipalities = municipalities;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -20,11 +32,11 @@ public class State {
         return name;
     }
 
-    public List getMunicipalities() {
+    public List<ObjectId> getMunicipalities() {
         return municipalities;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -32,14 +44,14 @@ public class State {
         this.name = name;
     }
 
-    public void setMunicipalities(List<Integer> municipalities) {
+    public void setMunicipalities(List<ObjectId> municipalities) {
         this.municipalities = municipalities;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -55,7 +67,7 @@ public class State {
             return false;
         }
         final State other = (State) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -63,7 +75,7 @@ public class State {
 
     @Override
     public String toString() {
-        return "id=" + id + ", name=" + name + ", Municipalities=" + municipalities;
+        return "State{" + "id=" + id + ", name=" + name + ", municipalities=" + municipalities + '}';
     }
 
 }
