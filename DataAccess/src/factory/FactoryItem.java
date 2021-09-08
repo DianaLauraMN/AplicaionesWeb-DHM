@@ -14,8 +14,6 @@ import businessObjects.Normal;
 import businessObjects.Post;
 import businessObjects.State;
 import businessObjects.User;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -23,35 +21,31 @@ import java.util.List;
  */
 public class FactoryItem {
 
-    public User createUserAdmin(String fullName, String email, String password,
-            String phoneNumber, String avatar, String city, Date birthDay, char gender) {
-        return new Administrator(fullName, email, password, avatar, city, birthDay, gender);
+    public User createUserAdmin() {
+        return new Administrator();
     }
 
-    public User createUserNormal(String fullName, String email, String password,
-            String phoneNumber, String avatar, String city, Date birthDay, char gender) {
-        return new Normal(fullName, email, password, avatar, city, birthDay, gender);
+    public User createUserNormal() {
+        return new Normal();
     }
 
-    public Comment createComment(int idUser, Date dateTime, String content, List<Integer> comments) {
-        return new Comment(idUser, dateTime, content, comments);
+    public Comment createComment() {
+        return new Comment();
     }
 
-    public Post createPostAnchored(int idUser, Date dateTimeCreation, String title,
-            String content, Date dateTimeEdition, List<Integer> comments) {
-        return new Anchored(idUser, dateTimeCreation, title, content, dateTimeEdition, comments);
+    public Post createPostAnchored() {
+        return new Anchored();
     }
 
-    public Post createPostCommon(int idUser, Date dateTimeCreation, String title,
-            String content, Date dateTimeEdition, List<Integer> comments) {
-        return new Common(idUser, dateTimeCreation, title, content, dateTimeEdition, comments);
+    public Post createPostCommon() {
+        return new Common();
     }
 
-    public State createState(String name, List<Integer> municipalities) {
-        return new State(name, municipalities);
+    public State createState() {
+        return new State();
     }
 
-    public Municipality createMunicipality(String name, List<Integer> users) {
-        return new Municipality(name, users);
+    public Municipality createMunicipality() {
+        return new Municipality();
     }
 }
