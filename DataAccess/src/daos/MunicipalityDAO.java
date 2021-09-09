@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 
 public class MunicipalityDAO implements DAO<Municipality> {
 
-    MongoCollection<Municipality> collection = instance.getConnection().getCollection("Municipalities", Municipality.class);
+    MongoCollection<Municipality> collection = instance.getConnection().getCollection("municipalities", Municipality.class);
 
     @Override
     public boolean insert(Municipality item) {

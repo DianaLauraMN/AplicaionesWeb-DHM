@@ -12,7 +12,7 @@ import org.bson.Document;
 
 public class StateDAO implements DAO<State> {
 
-    MongoCollection<State> collection = instance.getConnection().getCollection("States", State.class);
+    MongoCollection<State> collection = instance.getConnection().getCollection("states", State.class);
 
     @Override
     public boolean insert(State item) {
@@ -40,15 +40,15 @@ public class StateDAO implements DAO<State> {
         try {
             int x = -1;
             states = collection.find(eq("_id", idItem)).first();
-            List<ObjectId> idUsers = states.getMunicipalities();
-            for (int i = 0; i < idUsers.size(); i++) {
-                if (idDelete.equals(idUsers.get(i))) {
+            List<ObjectId> idMunicipalities = states.getMunicipalities();
+            for (int i = 0; i < idMunicipalities.size(); i++) {
+                if (idDelete.equals(idMunicipalities.get(i))) {
                     x = i;
                     break;
                 }
             }
-            idUsers.remove(x);
-            states.setMunicipalities(idUsers);
+            idMunicipalities.remove(x);
+            states.setMunicipalities(idMunicipalities);
             update(states);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
