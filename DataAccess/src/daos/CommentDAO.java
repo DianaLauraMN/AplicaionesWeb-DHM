@@ -1,9 +1,10 @@
-
 package daos;
 
 import businessObjects.Comment;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -27,13 +28,32 @@ public class CommentDAO implements DAO<Comment> {
         try {
             collection.deleteOne(eq("_id", idItem));
         } catch (Exception e) {
+            return false;
         }
         return true;
     }
 
     @Override
     public boolean deleteItem(ObjectId idItem, ObjectId idDelete) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Comment comments = null;
+        try {
+            int x = -1;
+            comments = collection.find(eq("_id", idItem)).first();
+            List<ObjectId> idComments = comments.getComments();
+            for (int i = 0; i < idComments.size(); i++) {
+                if (idDelete.equals(idComments.get(i))) {
+                    x = i;
+                    break;
+                }
+            }
+            idComments.remove(x);
+            comments.setComments(idComments);
+            update(comments);
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -43,6 +63,7 @@ public class CommentDAO implements DAO<Comment> {
                     new Document().append("dateTime", item.getDateTime()).append("content",
                             item.getContent()).append("comments", item.getComments())));
         } catch (Exception e) {
+            return false;
         }
         return true;
     }
@@ -59,17 +80,40 @@ public class CommentDAO implements DAO<Comment> {
 
     @Override
     public List<Comment> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Comment> comments = new ArrayList<>();
+        try {
+            collection.find().into(comments);
+        } catch (Exception ex) {
+            return null;
+        }
+        return comments;
     }
 
     @Override
     public List<Comment> findLike(String pattern) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        ArrayList<Comment> comments = new ArrayList<>();
+        try {
+            if (pattern.equalsIgnoreCase("")) {
+                return findAll();
+            } else {
+                collection.find(regex("content", pattern, "i")).into(comments);
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        return comments;
     }
 
     @Override
     public List<Comment> findMany(int many) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Comment> comments = new ArrayList<>();
+        try {
+            collection.find().limit(many).into(comments);
+        } catch (Exception ex) {
+            return null;
+        }
+        return comments;
     }
 
 }
