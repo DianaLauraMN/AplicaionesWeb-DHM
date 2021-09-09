@@ -1,9 +1,12 @@
 package daos;
 
-import daos.DAO;
+import businessObjects.Administrator;
+import businessObjects.Normal;
 import businessObjects.User;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -11,6 +14,8 @@ import org.bson.types.ObjectId;
 public class UserDAO implements DAO<User> {
 
     MongoCollection<User> collection = instance.getConnection().getCollection("Users", User.class);
+    MongoCollection<Normal> normals = instance.getConnection().getCollection("Users", Normal.class);
+    MongoCollection<Administrator> admins = instance.getConnection().getCollection("Users", Administrator.class);
 
     @Override
     public boolean insert(User intem) {
@@ -33,7 +38,7 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public boolean deleteItem(ObjectId idItem, ObjectId idDelete) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
@@ -41,7 +46,8 @@ public class UserDAO implements DAO<User> {
 
         try {
             collection.updateOne(eq("_id", item.getId()), new Document("$set",
-                    new Document().append("fullName", item.getFullName()).append("email",
+                    new Document().append("fullName", item.getFullName())
+                            .append("phoneNumber", item.getPhoneNumber()).append("email",
                             item.getEmail()).append("password", item.getPassword()).append("avatar",
                             item.getAvatar()).append("city", item.getCity()).append("birthDay",
                             item.getBirthDay()).append("gender", item.getGender())));
@@ -53,22 +59,69 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public User find(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        User user = null;
+        try {
+            user = collection.find(eq("_id", id)).first();
+        } catch (Exception ex) {
+            try {
+                user = normals.find(eq("_id", id)).first();
+            } catch (Exception e) {
+                user = admins.find(eq("_id", id)).first();
+            }
+        }
+        return user;
     }
 
     @Override
     public List<User> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            collection.find().into(users);
+        } catch (Exception ex) {
+            try {
+                normals.find().into(users);
+            } catch (Exception e) {
+                admins.find().into(users);
+            }
+        }
+        return users;
     }
 
     @Override
     public List<User> findLike(String pattern) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            if (pattern.equalsIgnoreCase("")) {
+                return findAll();
+            } else {
+                collection.find(regex("avatar", pattern, "i")).into(users);
+            }
+        } catch (Exception ex) {
+            try {
+                normals.find(regex("avatar", pattern, "i")).into(users);
+
+            } catch (Exception e) {
+                admins.find(regex("avatar", pattern, "i")).into(users);
+
+            }
+        }
+        return users;
+
     }
 
     @Override
     public List<User> findMany(int many) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            collection.find().limit(many).into(users);
+        } catch (Exception ex) {
+            try {
+                normals.find().limit(many).into(users);
+            } catch (Exception e) {
+                admins.find().limit(many).into(users);
+            }
+        }
+        return users;
     }
 
 }
