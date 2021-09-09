@@ -3,6 +3,8 @@ package daos;
 import businessObjects.Municipality;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -10,6 +12,7 @@ import org.bson.types.ObjectId;
 public class MunicipalityDAO implements DAO<Municipality> {
 
     MongoCollection<Municipality> collection = instance.getConnection().getCollection("Municipalities", Municipality.class);
+
 
     @Override
     public boolean insert(Municipality item) {
@@ -35,7 +38,24 @@ public class MunicipalityDAO implements DAO<Municipality> {
 
     @Override
     public boolean deleteItem(ObjectId idItem, ObjectId idDelete) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Municipality municipality = null;
+        try {
+            int x = -1;
+            municipality = collection.find(eq("_id", idItem)).first();
+            List<ObjectId> idUsers = municipality.getUsers();
+            for (int i = 0; i < idUsers.size(); i++) {
+                if (idDelete.equals(idUsers.get(i))) {
+                    x = i;
+                    break;
+                }
+            }
+            idUsers.remove(x);
+            municipality.setUsers(idUsers);
+            update(municipality);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return true;
     }
 
     @Override
@@ -65,16 +85,38 @@ public class MunicipalityDAO implements DAO<Municipality> {
 
     @Override
     public List<Municipality> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Municipality> municipalities = new ArrayList<>();
+        try {
+            collection.find().into(municipalities);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return municipalities;
     }
 
     @Override
     public List<Municipality> findLike(String pattern) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Municipality> municipalities = new ArrayList<>();
+        try {
+            if (pattern.equalsIgnoreCase("")) {
+                return findAll();
+            } else {
+                collection.find(regex("name", pattern, "i")).into(municipalities);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return municipalities;
     }
 
     @Override
     public List<Municipality> findMany(int many) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Municipality> municipalities = new ArrayList<>();
+        try {
+            collection.find().limit(many).into(municipalities);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return municipalities;
     }
 }
